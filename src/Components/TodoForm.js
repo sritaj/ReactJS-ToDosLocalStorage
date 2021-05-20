@@ -11,24 +11,23 @@ import {
 import { v4 } from "uuid";
 
 const TodoForm = ({ addTodos }) => {
-  const [toDoString, setToDoString] = useState("");
+  const [todoString, setTodoString] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (toDoString === "") {
-      return alert("Please fill some values");
+    if (todoString === "") {
+      return alert("Please fill some value");
     }
     const todo = {
-      toDoString,
+      todoString,
       id: v4(),
     };
-    //TODO
-    addTodos(todo);
-
-    setToDoString("");
 
     addTodos(todo);
+
+    setTodoString("");
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
@@ -37,12 +36,12 @@ const TodoForm = ({ addTodos }) => {
             type="text"
             name="todo"
             id="todo"
-            placeholder="Enter a to do string"
-            value={toDoString}
-            onChange={(e) => setToDoString(e.string.value)}
-          ></Input>
+            placeholder="Enter a todo string"
+            value={todoString}
+            onChange={(e) => setTodoString(e.target.value)}
+          />
           <InputGroupAddon addonType="prepend">
-            <Button color="sucess">Add ToDo</Button>
+            <Button color="success">Add Todo</Button>
           </InputGroupAddon>
         </InputGroup>
       </FormGroup>
